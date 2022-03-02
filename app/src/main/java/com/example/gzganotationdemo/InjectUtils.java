@@ -77,13 +77,6 @@ public class InjectUtils {
                         //listenerInvocationHandler.invoke() 相当于 调用 activity.click()  或者是  activity.longClick()
 
                         //new View.OnClickListener()
-                        // 通过代理 合成代码：
-                        //                  new View.OnClickListener() {
-                        //////                    @Override
-                        //////                    public void onClick(View v) {
-                        //////
-                        //////                    }
-                        //////                }
                         Object proxy= Proxy.newProxyInstance(listenerType.getClassLoader(),new Class[]{listenerType},listenerInvocationHandler);
 
 
@@ -92,13 +85,6 @@ public class InjectUtils {
 
                         //反射调用
                         //onClickMethod就是： view 的  setOnClickListener（new View.OnClickListener()）这个方法
-                        // proxy 就是参数 ：
-                        //                  new View.OnClickListener() {
-                        //////                    @Override
-                        //////                    public void onClick(View v) {
-                        //////
-                        //////                    }
-                        //////                }
 
                         // 即onClickMethod.invoke(view,proxy) 就 实现了下面这个段代码
 //                      view.setOnClickListener（new View.OnClickListener() {
